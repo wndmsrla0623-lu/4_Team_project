@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
     public int maxHp = 3;
     public int currentHp;
     public Slider hpSlider;
+    public GameOverUI gameOverUI;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,23 +36,33 @@ public class Health : MonoBehaviour
             hpSlider.value = (float)currentHp / maxHp;
     }
 
+
+
     void Die()
     {
         if (CompareTag("Player"))
         {
             Debug.Log("게임 오버");
-            Time.timeScale = 0f;
+
+            if (gameOverUI != null)
+            {
+                gameOverUI.ShowGameOver();
+            }
+            else
+            {
+                Time.timeScale = 0f;
+            }
         }
         else
         {
+            WaveManager waveManager =
+                FindFirstObjectByType<WaveManager>();
+
+            if (waveManager != null)
+                waveManager.EnemyKilled();
+
             Destroy(gameObject);
         }
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
+

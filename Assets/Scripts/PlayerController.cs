@@ -83,8 +83,14 @@ public class PlayerController : MonoBehaviour
         move.y = verticalVelocity;
 
         Vector3 camPos = cameraTransform.localPosition;
-        camPos.z = Mathf.Lerp(camPos.z, targetZ, 5f * Time.deltaTime);
-        cameraTransform.localPosition = camPos;
+
+        camPos.z = Mathf.Lerp(
+            camPos.z,
+            targetZ,
+            5f * Time.deltaTime
+        );
+
+        cameraTransform.localPosition = camPos; ;
 
         controller.Move(move * Time.deltaTime);
     }

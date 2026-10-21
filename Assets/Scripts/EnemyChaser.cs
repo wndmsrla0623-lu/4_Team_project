@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class EnemyChaser : MonoBehaviour
@@ -8,37 +9,60 @@ public class EnemyChaser : MonoBehaviour
     public int damage = 1;
     public float attackCooldown = 1f;
 
+    public Transform model;
+    public float modelRotationOffset = 180f;
+
     Transform player;
     float lastAttackTime = -999f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         GameObject p = GameObject.FindWithTag("Player");
-        if (p != null) player = p.transform;
+
+        if (p != null)
+            player = p.transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (player == null) return;
 
         Vector3 toPlayer = player.position - transform.position;
-        toPlayer.y = 0;
+        toPlayer.y = 0f;
+
         float distance = toPlayer.magnitude;
 
         if (distance > detectRange) return;
 
-        transform.forward = toPlayer.normalized;
+        if (distance > 0.01f)
+        {
+            Quaternion targetRotation =
+                Quaternion.LookRotation(toPlayer);
+
+            if (model != null)
+            {
+                model.rotation = targetRotation *
+                    Quaternion.Euler(0f, modelRotationOffset, 0f);
+            }
+            else
+            {
+                transform.rotation = targetRotation;
+            }
+        }
 
         if (distance > attackRange)
         {
-            float move = moveSpeed * Time.deltaTime;
-            transform.position += transform.forward * move;
+            transform.position += toPlayer.normalized *
+                moveSpeed * Time.deltaTime;
         }
         else if (Time.time >= lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;
-            player.GetComponent<Health>().TakeDamage(damage);
+
+            Health hp = player.GetComponent<Health>();
+
+            if (hp != null)
+                hp.TakeDamage(damage);
         }
     }
 }

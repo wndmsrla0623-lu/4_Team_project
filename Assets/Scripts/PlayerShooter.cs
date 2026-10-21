@@ -21,5 +21,14 @@ public class PlayerShooter : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.linearVelocity = firePoint.forward * bulletSpeed;
     }
-    
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
