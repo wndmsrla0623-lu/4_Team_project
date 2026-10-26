@@ -38,6 +38,7 @@ public class Health : MonoBehaviour
 
 
 
+
     void Die()
     {
         if (CompareTag("Player"))
@@ -45,13 +46,9 @@ public class Health : MonoBehaviour
             Debug.Log("게임 오버");
 
             if (gameOverUI != null)
-            {
                 gameOverUI.ShowGameOver();
-            }
             else
-            {
                 Time.timeScale = 0f;
-            }
         }
         else
         {
@@ -61,8 +58,15 @@ public class Health : MonoBehaviour
             if (waveManager != null)
                 waveManager.EnemyKilled();
 
+            PlayerLevelSystem levelSystem =
+                FindFirstObjectByType<PlayerLevelSystem>();
+
+            if (levelSystem != null)
+                levelSystem.AddExp(1);
+
             Destroy(gameObject);
         }
     }
+
 }
 
