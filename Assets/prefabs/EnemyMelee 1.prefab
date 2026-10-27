@@ -90,6 +90,7 @@ MonoBehaviour:
   maxHp: 3
   currentHp: 0
   hpSlider: {fileID: 0}
+  gameOverUI: {fileID: 0}
 --- !u!1001 &2653686436607896733
 PrefabInstance:
   m_ObjectHideFlags: 0
