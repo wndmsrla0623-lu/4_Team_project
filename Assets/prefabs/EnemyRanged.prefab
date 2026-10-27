@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4771130900912995096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6272867868496899941}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6272867868496899941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771130900912995096}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3359293956920752155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6211614306475549622
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,10 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3359293956920752155}
   - component: {fileID: 4616267565110289731}
-  - component: {fileID: 3182630348802043022}
   - component: {fileID: 6763420360537652350}
+  - component: {fileID: -2625446193341634613}
   m_Layer: 0
-  m_Name: EnemyMelee
+  m_Name: EnemyRanged
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +64,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2547191018788506486}
+  - {fileID: 6272867868496899941}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &4616267565110289731
@@ -56,25 +88,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8555568, y: 0.9820721, z: 1.397033}
   m_Center: {x: 0.10635942, y: 0.57417023, z: 0.19851649}
---- !u!114 &3182630348802043022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6211614306475549622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14bb9ab3e836064ab8182e1d5370a16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChaser
-  moveSpeed: 2
-  detectRange: 15
-  attackRange: 1.5
-  damage: 1
-  attackCooldown: 1
-  model: {fileID: 0}
-  modelRotationOffset: 180
 --- !u!114 &6763420360537652350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,9 +100,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163ae3a0152b7f446a28d122583e9e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHp: 3
+  maxHp: 5
   currentHp: 0
   hpSlider: {fileID: 0}
+  gameOverUI: {fileID: 0}
+--- !u!114 &-2625446193341634613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6211614306475549622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05a36ea35df2644e9118831a39a2288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
+  bulletPrefab: {fileID: 3905845093376928332, guid: 8f3eb5b87289918449cd4f2c7a757095, type: 3}
+  firePoint: {fileID: 6272867868496899941}
+  moveSpeed: 2
+  keepDistance: 8
+  fireRange: 12
+  fireInterval: 2
+  bulletSpeed: 10
 --- !u!1001 &2653686436607896733
 PrefabInstance:
   m_ObjectHideFlags: 0

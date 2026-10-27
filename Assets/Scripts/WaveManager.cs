@@ -49,9 +49,20 @@ public class WaveManager : MonoBehaviour
     {
         isWaiting = true;
 
+        // 적 생성 중단
         if (spawner != null)
             spawner.SetSpawning(false);
 
+        // 남아 있는 몬스터 전부 제거
+        GameObject[] enemies =
+            GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        // 5초 동안 대기
         for (int i = 5; i > 0; i--)
         {
             if (announcementText != null)
@@ -61,6 +72,7 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        // 다음 웨이브 시작
         currentWave++;
         currentKills = 0;
 
@@ -72,6 +84,7 @@ public class WaveManager : MonoBehaviour
         if (announcementText != null)
             announcementText.text = "WAVE " + currentWave;
 
+        // 적 생성 재개
         if (spawner != null)
             spawner.SetSpawning(true);
 
