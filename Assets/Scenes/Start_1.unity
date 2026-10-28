@@ -3682,9 +3682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevelSystem
   characterPortrait: {fileID: 512163591}
-  level1Image: {fileID: 3658569535416648312, guid: 4d6799b5cd376cb4c823d44dc4e36c71, type: 3}
-  level2Image: {fileID: -3066503393598026269, guid: dc2a5cba40a189845af2b311d57d571a, type: 3}
-  level4Image: {fileID: 5639210824050873060, guid: 55d2a556af6cc964f9b2a423a2b2fc26, type: 3}
+  level1Image: {fileID: -8948940676270000845, guid: fc06669a41ca14044a30d77628a3ead0, type: 3}
+  level2Image: {fileID: 4249149191797068961, guid: d08656983e6cbf14f88b269eb2cf4045, type: 3}
+  level4Image: {fileID: 2023890860620313602, guid: 70582c27d117612498155099a504db43, type: 3}
   level: 1
   currentExp: 0
   requiredExp: 5
