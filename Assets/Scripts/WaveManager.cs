@@ -11,12 +11,15 @@ public class WaveManager : MonoBehaviour
 
     public int currentKills = 0;
     public int killsNeeded;
+    public int score = 0;
+    public int scorePerKill = 100;
 
     public float waveDelay = 5f;
 
     public TMP_Text waveText;
     public TMP_Text remainingText;
     public TMP_Text announcementText;
+    public TMP_Text scoreText;
 
     EnemySpawner spawner;
     bool isWaiting = false;
@@ -43,6 +46,11 @@ public class WaveManager : MonoBehaviour
         {
             StartCoroutine(NextWave());
         }
+    }
+    public void AddScore(int amount)
+    {
+        score += amount;
+        UpdateUI();
     }
 
     IEnumerator NextWave()
@@ -108,5 +116,7 @@ public class WaveManager : MonoBehaviour
             remainingText.text =
                 "남은 처치 수: " + remaining + " / " + killsNeeded;
         }
+        if (scoreText != null)
+            scoreText.text = "점수: " + score;
     }
 }

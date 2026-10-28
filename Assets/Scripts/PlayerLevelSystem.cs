@@ -5,6 +5,12 @@ using TMPro;
 
 public class PlayerLevelSystem : MonoBehaviour
 {
+    [Header("캐릭터 이미지")]
+    public Image characterPortrait;
+    public Sprite level1Image;
+    public Sprite level2Image;
+    public Sprite level4Image;
+
     public int level = 1;
     public int currentExp = 0;
     public int requiredExp = 5;
@@ -88,6 +94,16 @@ public class PlayerLevelSystem : MonoBehaviour
 
         if (skillTitle != null)
             skillTitle.text = "LEVEL UP!";
+
+        if (characterPortrait != null)
+        {
+            if (level >= 4)
+                characterPortrait.sprite = level4Image;
+            else if (level >= 2)
+                characterPortrait.sprite = level2Image;
+            else
+                characterPortrait.sprite = level1Image;
+        }
     }
 
     public void UpgradeDamage()
@@ -140,4 +156,5 @@ public class PlayerLevelSystem : MonoBehaviour
 
         UpdateUI();
     }
+
 }

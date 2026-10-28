@@ -46,9 +46,13 @@ public class Health : MonoBehaviour
             Debug.Log("게임 오버");
 
             if (gameOverUI != null)
+            {
                 gameOverUI.ShowGameOver();
+            }
             else
+            {
                 Time.timeScale = 0f;
+            }
         }
         else
         {
@@ -56,13 +60,22 @@ public class Health : MonoBehaviour
                 FindFirstObjectByType<WaveManager>();
 
             if (waveManager != null)
+            {
+                // 적 처치 시 점수 추가
+                waveManager.AddScore(waveManager.scorePerKill);
+
+                // 웨이브 처치 수 증가
                 waveManager.EnemyKilled();
+            }
 
             PlayerLevelSystem levelSystem =
                 FindFirstObjectByType<PlayerLevelSystem>();
 
             if (levelSystem != null)
+            {
+                // 경험치 1 추가
                 levelSystem.AddExp(1);
+            }
 
             Destroy(gameObject);
         }
